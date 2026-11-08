@@ -1189,12 +1189,14 @@ nav a.button.current {
 		font-weight: 400;
 	}
 
-	.menu-toggle ~ nav a.current {
+	.menu-toggle ~ nav a.current,
+	.menu-toggle ~ nav a.active {
 		background-color: var(--accent-soft);
 		font-weight: 700;
 	}
 
-	.menu-toggle ~ nav a.button {
+	.menu-toggle ~ nav a.button,
+	.menu-toggle ~ nav a.cta {
 		min-width: 0;
 		margin: 0.5rem 0 0 0;
 		background-color: var(--dark);
@@ -1266,6 +1268,10 @@ nav a.button.current {
 
 	.cards {
 		padding-top: 2rem;
+	}
+
+	.cards.parks {
+		column-gap: 0;
 	}
 
 	.cards .card {

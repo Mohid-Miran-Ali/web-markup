@@ -1,5 +1,5 @@
 Student name: Mohid Miran Ali
 Student number: 763944
 Student class: IT1A
-GitHub Repository: your github repository URL
-GitHub Pages URL: your github pages URL
+GitHub Repository: https://github.com/Mohid-Miran-Ali/web-markup
+GitHub Pages URL:  https://mohid-miran-ali.github.io/web-markup/
