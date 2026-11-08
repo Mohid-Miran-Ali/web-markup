@@ -1,1 +1,1342 @@
-/* add all items from grading group 3 and 4. Search for items in group 5 that refer to css f.e. z index */ 
+/* ==========================================================
+   Haarlem First Visit
+   One container + one 12-column grid for header, sections and footer.
+   Change --container to make the whole site wider or narrower.
+   ========================================================== */
+:root {
+	/* Fonts */
+	--font-heading: "Space Mono", "Courier New", monospace; /* H1, H2 and small labels */
+	--font-body: "Source Serif 4", Georgia, serif; /* paragraphs, lists and links */
+	--font-ui: "Inter", Arial, sans-serif; /* logo name and Contact button */
+
+	/* Colors */
+	--accent: #2a5cb2;
+	--accent-dark: #1f4690;
+	--accent-soft: #e3eaf6;
+	--text: #1a1a1a;
+	--muted: #616161;
+	--body: #404040;
+	--dark: #1f1f1f;
+	--white: #ffffff;
+	--bg: #f8f6f1;
+	--line: #e4e0d8;
+	--footer-bg: #e4e3e2;
+
+	/* Layout */
+	--container: 86.25rem;
+	--gutter: 2rem;
+	--side: max(1.5rem, calc((100% - var(--container)) / 2));
+	--space: 5.75rem;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: var(--font-body);
+	line-height: 1.6;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Small mono labels above titles */
+.label {
+	margin: 0;
+	color: var(--accent);
+	font-family: var(--font-heading);
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+/* ---------- Header ---------- */
+header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 2rem var(--side);
+	background-color: var(--bg);
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0 0 0.0625rem 0;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.logo-icon {
+	box-sizing: content-box;
+	padding: 0.7rem;
+	border-radius: 0.6rem;
+	background-color: var(--accent);
+}
+
+.logo-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.logo-text strong {
+	color: var(--text);
+	font-family: var(--font-ui);
+	font-size: 1.3rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.logo-text small {
+	color: var(--muted);
+	font-family: var(--font-heading);
+	font-size: 0.65rem;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+nav > ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav a {
+	display: block;
+	padding: 0.4rem 0.9rem;
+	border-radius: 0.35rem;
+	color: var(--accent);
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+nav a:hover,
+nav a:active,
+nav a.active {
+	background-color: var(--accent-soft);
+}
+
+/* Contact link = dark button */
+nav a.cta {
+	min-width: 12.5rem;
+	margin-left: 1.4rem;
+	padding: 0.6rem 1rem;
+	border-radius: 0.6rem;
+	background-color: var(--dark);
+	color: var(--white);
+	font-family: var(--font-ui);
+	font-size: 1rem;
+	font-weight: 500;
+	text-align: center;
+}
+
+nav a.cta:hover,
+nav a.cta:active,
+nav a.cta.active {
+	background-color: var(--text);
+}
+
+/* ---------- Shared 12-column grid ---------- */
+.hero,
+.why,
+.sections,
+.footer-top {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--gutter);
+}
+
+/* ---------- Hero: text = columns 1-6, image = columns 7-12 ---------- */
+.hero {
+	align-items: center;
+	padding: 10rem var(--side) 7rem var(--side);
+}
+
+.hero article {
+	grid-column: 1 / 7;
+	padding-right: 2rem;
+}
+
+.hero figure {
+	grid-column: 7 / 13;
+}
+
+.hero figure img {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+h1 {
+	margin: 1.25rem 0 1.2rem 0;
+	color: var(--text);
+	font-family: var(--font-heading);
+	font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.lead {
+	max-width: 34rem;
+	margin: 0 0 2.4rem 0;
+	color: var(--muted);
+	font-size: 1.35rem;
+	line-height: 1.6;
+}
+
+.hero .lead {
+	max-width: 36rem;
+	margin-bottom: 1.6rem;
+	font-size: 2rem;
+	line-height: 1.8;
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.9rem 1.5rem;
+	border-radius: 0.2rem;
+	background-color: var(--accent);
+	color: var(--white);
+	font-size: 1.15rem;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.button:hover {
+	background-color: var(--accent-dark);
+}
+
+figure {
+	margin: 0;
+	padding: 0.5rem;
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0.0625rem;
+	border-radius: 0.15rem;
+	background-color: var(--white);
+}
+
+figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* ---------- Why visit: text = columns 1-5, list = columns 6-12 ---------- */
+.why {
+	align-items: start;
+	padding: var(--space) var(--side);
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0 0 0.0625rem 0;
+}
+
+.why article {
+	grid-column: 1 / 6;
+	padding-right: 2rem;
+}
+
+h2 {
+	margin: 1.25rem 0 0 0;
+	color: var(--text);
+	font-family: var(--font-heading);
+	font-size: 2.3rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.checks {
+	grid-column: 6 / 13;
+	margin: 0.25rem 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.checks li {
+	position: relative;
+	padding-left: 1.5625rem;
+	color: var(--accent);
+	font-size: 1.15rem;
+	line-height: 1.6;
+}
+
+.checks li + li {
+	margin-top: 1.2rem;
+}
+
+.checks li::before {
+	content: "";
+	position: absolute;
+	top: 0.7rem;
+	left: 0;
+	width: 0.6rem;
+	height: 0.6rem;
+	background-color: var(--accent);
+}
+
+/* ---------- Main sections: heading = full width, each card = 4 columns ---------- */
+.sections {
+	padding: var(--space) var(--side);
+	row-gap: 0;
+}
+
+.sections > .label,
+.sections > h2 {
+	grid-column: 1 / -1;
+}
+
+.sections > h2 {
+	margin-bottom: 2.8rem;
+}
+
+/* Home page: line under the cards, then space before the footer */
+.featured {
+	padding-bottom: 6rem;
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0 0 0.0625rem 0;
+}
+
+main:has(.featured) {
+	padding-bottom: 5.75rem;
+}
+
+.card {
+	grid-column: span 4;
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0.0625rem;
+	border-radius: 0.15rem;
+	background-color: var(--white);
+}
+
+.card figure {
+	padding: 0;
+	border-style: none;
+	border-radius: 0;
+}
+
+.card figure img {
+	aspect-ratio: 16 / 10;
+	object-fit: cover;
+}
+
+.card .label {
+	margin: 1.3rem 1.5rem 0 1.5rem;
+	font-size: 1.25rem;
+	letter-spacing: 0.1em;
+}
+
+.card h3 {
+	margin: 0 1.5rem;
+	color: var(--text);
+	font-family: var(--font-body);
+	font-size: 1.3rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.card p:not(.label) {
+	margin: 0.4rem 1.5rem 0 1.5rem;
+	color: var(--body);
+	font-size: 1.15rem;
+	line-height: 1.6;
+}
+
+.more {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 1.25rem 1.5rem 1.3rem 1.5rem;
+	color: var(--accent);
+	font-size: 1.15rem;
+	line-height: 1.6;
+}
+
+.more:hover {
+	color: var(--accent-dark);
+}
+
+/* Home cards: same height, "Learn more" pinned to the bottom */
+.card.home {
+	display: flex;
+	flex-direction: column;
+	min-height: 37.5rem;
+}
+
+.card.home .more {
+	align-self: flex-start;
+	margin-top: auto;
+}
+
+/* ---------- Footer: brand = columns 1-6, navigation = columns 9-12 ---------- */
+footer {
+	padding: 4rem var(--side) 3.2rem var(--side);
+	background-color: var(--footer-bg);
+}
+
+.footer-top {
+	align-items: start;
+}
+
+.footer-top article,
+.footer-top .brand {
+	grid-column: 1 / 7;
+}
+
+.footer-top article p,
+.footer-top .brand p {
+	max-width: 30rem;
+	margin: 1rem 0 0 0;
+	color: var(--muted);
+	font-size: 1.15rem;
+	line-height: 1.6;
+}
+
+.footer-top nav {
+	grid-column: 9 / 13;
+	text-align: right;
+}
+
+footer h2 {
+	margin: 0 0 1.1rem 0;
+	color: var(--muted);
+	font-family: var(--font-heading);
+	font-size: 0.85rem;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+footer nav > ul {
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 0.3rem;
+}
+
+footer nav a {
+	padding: 0;
+	border-radius: 0;
+	color: var(--muted);
+	font-size: 1.15rem;
+	font-weight: 400;
+	line-height: 1.6;
+}
+
+footer nav a:hover {
+	background-color: transparent;
+	color: var(--accent);
+}
+
+.copyright {
+	margin: 5rem 0 0 0;
+	color: var(--muted);
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 64em) {
+	:root {
+		--space: 4rem;
+	}
+
+	.hero {
+		row-gap: 2.5rem;
+		padding-top: 3.5rem;
+		padding-bottom: 3.5rem;
+	}
+
+	.hero article,
+	.hero figure,
+	.why article,
+	.checks {
+		grid-column: 1 / -1;
+		padding-right: 0;
+	}
+
+	.checks {
+		margin-top: 2rem;
+	}
+
+	.card.home {
+		min-height: 0;
+	}
+
+	.footer-top nav {
+		grid-column: 8 / 13;
+	}
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 40em) {
+	:root {
+		--space: 3rem;
+	}
+
+	header {
+		justify-content: center;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	nav > ul {
+		justify-content: center;
+		gap: 0.5rem 0.75rem;
+	}
+
+	nav a {
+		font-size: 1rem;
+	}
+
+	nav a.cta {
+		min-width: 0;
+		margin-left: 0;
+		padding: 0.5rem 1.5rem;
+	}
+
+	.label {
+		font-size: 1.1rem;
+	}
+
+	h2 {
+		font-size: 1.8rem;
+	}
+
+	.hero .lead {
+		font-size: 1.25rem;
+		line-height: 1.6;
+	}
+
+	.card,
+	.footer-top article,
+	.footer-top .brand,
+	.footer-top nav {
+		grid-column: 1 / -1;
+	}
+
+	.card + .card {
+		margin-top: 1.5rem;
+	}
+
+	.footer-top nav {
+		margin-top: 2rem;
+		text-align: left;
+	}
+
+	.footer-top nav > ul {
+		align-items: flex-start;
+	}
+}
+
+/* ==========================================================
+   Inner pages: What to see, Where to walk, Museums,
+   Parks & Nature and Contact
+   (class names: site-header, intro, eyebrow, cards, card,
+   areas, museums, contact-form, site-footer ...)
+   ========================================================== */
+p {
+	text-indent: 0;
+	word-spacing: 0;
+}
+
+/* ---------- Header on the inner pages ---------- */
+.logo img {
+	display: block;
+	width: auto;
+	height: 3.1rem;
+}
+
+nav a.current {
+	background-color: var(--accent-soft);
+}
+
+/* Contact link = dark button (same look as .cta on the home page) */
+nav a.button {
+	min-width: 12.5rem;
+	margin-left: 1.4rem;
+	padding: 0.6rem 1rem;
+	border-radius: 0.6rem;
+	background-color: var(--dark);
+	color: var(--white);
+	font-family: var(--font-ui);
+	font-size: 1rem;
+	font-weight: 500;
+	text-align: center;
+}
+
+nav a.button:hover,
+nav a.button:active,
+nav a.button.current {
+	background-color: var(--text);
+}
+
+/* ---------- Footer on the inner pages (same look as the home footer) ---------- */
+.site-footer {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: var(--gutter);
+	align-items: start;
+}
+
+.about {
+	grid-column: 1 / 7;
+}
+
+.about img {
+	display: block;
+	width: auto;
+	height: 3.1rem;
+}
+
+.about h2 {
+	max-width: 30rem;
+	margin: 1rem 0 0 0;
+	color: var(--muted);
+	font-family: var(--font-body);
+	font-size: 1.15rem;
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.6;
+	text-transform: none;
+}
+
+.footer-nav {
+	grid-column: 9 / 13;
+	text-align: right;
+}
+
+.footer-nav h3 {
+	margin: 0 0 1.1rem 0;
+	color: var(--muted);
+	font-family: var(--font-heading);
+	font-size: 0.85rem;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+/* ---------- Page intro (small label, h1, subtitle) ---------- */
+.intro {
+	padding: 5.5rem var(--side) 5.25rem var(--side);
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0 0 0.0625rem 0;
+}
+
+.eyebrow {
+	margin: 0;
+	color: var(--accent);
+	font-family: var(--font-heading);
+	font-size: 1.3rem;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+/* Title case label (not uppercase) */
+.eyebrow.plain {
+	text-transform: none;
+}
+
+.intro h1 {
+	margin: 0.6rem 0 0.3rem 0;
+}
+
+.intro h2,
+.suggested h2 {
+	max-width: 76rem;
+	margin: 0;
+	color: var(--muted);
+	font-family: var(--font-body);
+	font-size: 1.7rem;
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+/* ---------- What to see (and Parks) cards ---------- */
+.cards {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: 1rem;
+	row-gap: 1rem;
+	padding: 4rem var(--side) 4rem var(--side);
+}
+
+.cards .card {
+	min-height: 45rem;
+}
+
+.cards .card figure img {
+	aspect-ratio: 212 / 150;
+}
+
+.cards .card figcaption {
+	margin: 1rem 1.5rem 0 1.5rem;
+	color: var(--accent);
+	font-family: var(--font-heading);
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	line-height: 1.5;
+}
+
+.cards .card p.text {
+	min-height: 7.4rem;
+	margin-top: 0.8rem;
+}
+
+.cards .card p.text::first-letter {
+	text-transform: uppercase;
+}
+
+.cards .card p.location {
+	margin: 0.8rem 1.4rem 0 1.4rem;
+	padding: 1.25rem 0.2rem 0 0.2rem;
+	border-style: solid;
+	border-color: var(--line);
+	border-width: 0.0625rem 0 0 0;
+	color: var(--muted);
+	font-size: 1.05rem;
+}
+
+/* Small pin icon in front of every location line */
+.location img {
+	float: left;
+	width: 1.1rem;
+	height: 1.1rem;
+	margin: 0.3rem 0.6rem 0 0;
+}
+
+/* ---------- Where to walk ---------- */
+.intro:has(+ .areas) {
+	padding-top: 2.9rem;
+	padding-bottom: 2.2rem;
+}
+
+.areas {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.25rem 4.5rem;
+	padding: 2.6rem var(--side) 0 var(--side);
+}
+
+.areas article {
+	padding: 1rem 1.25rem 1.1rem 1.25rem;
+	background-color: var(--white);
+}
+
+.areas h3 {
+	margin: 0;
+	color: var(--text);
+	font-size: 1.3rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.areas p {
+	margin: 0.4rem 0 0 0;
+	color: var(--body);
+	font-size: 1.15rem;
+	line-height: 1.5;
+}
+
+.areas p::first-letter {
+	text-transform: uppercase;
+}
+
+.suggested {
+	padding: 6.25rem var(--side) 0 var(--side);
+}
+
+.suggested h2 {
+	margin-top: 0.6rem;
+}
+
+.route-map {
+	margin: 4.9rem var(--side) 0 var(--side);
+	padding: 0;
+	border-style: none;
+	border-radius: 0;
+	background-color: transparent;
+}
+
+.route-map img {
+	aspect-ratio: 739 / 419;
+	object-fit: cover;
+}
+
+.route {
+	max-width: 60rem;
+	margin: 11rem auto 18rem auto;
+	padding: 0.1rem 1.1rem 2rem 1.1rem;
+	background-color: var(--white);
+}
+
+.route h3 {
+	margin: 0;
+	color: var(--accent);
+	font-family: var(--font-heading);
+	font-size: 2rem;
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+.route p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 1.4rem;
+	line-height: 1.5;
+}
+
+/* ---------- Museums ---------- */
+.museums-intro {
+	padding-top: 4.3rem;
+	padding-bottom: 10.2rem;
+	border-style: none;
+}
+
+.museums {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	padding: 0 var(--side) 4rem var(--side);
+}
+
+.museum {
+	min-height: 50rem;
+	padding: 0.45rem 1.6rem 0 1.6rem;
+	background-color: var(--white);
+}
+
+.museum figure {
+	padding: 0;
+	border-style: none;
+	border-radius: 0;
+	background-color: transparent;
+}
+
+.museum figure img {
+	aspect-ratio: 193 / 244;
+	object-fit: cover;
+}
+
+.museum figcaption {
+	padding: 0.6rem 0 0 0;
+	color: var(--accent);
+	font-family: var(--font-heading);
+	font-size: 1.2rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	line-height: 1.5;
+}
+
+.museum h3 {
+	margin: 0.2rem 0 0 0;
+	color: var(--text);
+	font-family: var(--font-ui);
+	font-size: 1.1rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.museum .text {
+	min-height: 6.1rem;
+	margin: 0.3rem 0 0 0;
+	color: var(--muted);
+	font-size: 1.05rem;
+	line-height: 1.45;
+}
+
+.museum .text::first-letter {
+	text-transform: uppercase;
+}
+
+.museum .facts {
+	margin: 0;
+	color: var(--text);
+	font-size: 1.05rem;
+	line-height: 1.45;
+}
+
+/* "Good to know" starts on its own line */
+.museum .facts strong:last-of-type::before {
+	content: "\A";
+	white-space: pre;
+}
+
+.museum .location {
+	margin: 1.2rem -0.8rem 0 -0.8rem;
+	padding: 1.2rem 0.8rem 1.4rem 1.4rem;
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-width: 0.0625rem 0 0 0;
+	color: var(--body);
+	font-size: 1.1rem;
+}
+
+/* ---------- Parks & Nature ---------- */
+.parks-intro {
+	padding-top: 2.1rem;
+	padding-bottom: 4.5rem;
+	border-style: none;
+}
+
+.parks-intro h2 {
+	max-width: 66rem;
+}
+
+.cards.parks {
+	column-gap: 2.7rem;
+	padding: 0 var(--side) 4rem var(--side);
+}
+
+.parks .card {
+	min-height: 0;
+	border-style: none;
+	border-radius: 0;
+	background-color: #fafaf8;
+}
+
+.parks .card figure img {
+	aspect-ratio: 220 / 231;
+}
+
+.parks .card figcaption {
+	margin: 4.5rem 1.6rem 0 1.6rem;
+	font-size: 1.2rem;
+	letter-spacing: 0.04em;
+}
+
+.parks .card h3 {
+	margin: 0.2rem 1.6rem 0 1.6rem;
+	font-family: var(--font-ui);
+	font-size: 1.1rem;
+}
+
+.parks .card p.text {
+	min-height: 7.4rem;
+	margin: 0.6rem 1.6rem 0 1.6rem;
+}
+
+.parks .card p.location {
+	margin: 0.3rem 1rem 0 1rem;
+	padding: 3.4rem 0.6rem 4.9rem 0.6rem;
+	border-color: #c4c4c4;
+	font-size: 1.1rem;
+}
+
+/* ---------- Contact ---------- */
+.contact-intro {
+	padding-top: 1.5rem;
+	padding-bottom: 2.9rem;
+	border-style: none;
+}
+
+.contact-intro .eyebrow {
+	font-size: 2rem;
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.2;
+}
+
+.contact-intro h1 {
+	margin: 0 0 1rem 0;
+}
+
+.contact-intro h2 {
+	max-width: 66rem;
+	font-family: var(--font-heading);
+	font-size: 2rem;
+	font-weight: 400;
+	line-height: 1.1;
+}
+
+.contact-form {
+	padding: 0 var(--side) 19rem var(--side);
+}
+
+.contact-form fieldset {
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}
+
+.contact-form legend {
+	padding: 0 0 1rem 0;
+	color: #1f2a5c;
+	font-family: var(--font-ui);
+	font-size: 2.1rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.contact-form .lead {
+	max-width: none;
+	margin: 0 0 1.5rem 0;
+	color: #4a5470;
+	font-family: var(--font-ui);
+	font-size: 1.25rem;
+	line-height: 1.4;
+}
+
+.contact-form .form-card {
+	max-width: 38rem;
+	padding: 1.6rem 1.5rem 2rem 1.5rem;
+	border-style: solid;
+	border-color: #e4e4e4;
+	border-width: 0.0625rem;
+	border-radius: 1rem;
+	background-color: var(--white);
+}
+
+.contact-form .row {
+	display: flex;
+	gap: 1.25rem;
+	margin: 0 0 1.4rem 0;
+}
+
+/* Label text and red star on one line, input below */
+.contact-form .field {
+	display: flex;
+	flex: 1;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: baseline;
+	column-gap: 0.2rem;
+	row-gap: 0.4rem;
+	color: var(--text);
+	font-family: var(--font-ui);
+	font-size: 0.7rem;
+	font-weight: 700;
+}
+
+.contact-form .field.narrow {
+	flex: 0 0 7rem;
+}
+
+.contact-form .required {
+	color: #d32f2f;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+	flex: 0 0 100%;
+	width: 100%;
+	height: 3rem;
+	padding: 0 1rem;
+	border-style: solid;
+	border-color: #e4e7ee;
+	border-width: 0.0625rem;
+	border-radius: 0.9rem;
+	background-color: var(--white);
+	color: var(--text);
+	font-family: var(--font-ui);
+	font-size: 0.9rem;
+	font-weight: 400;
+}
+
+.contact-form textarea {
+	height: 13.5rem;
+	padding: 1rem;
+	resize: vertical;
+}
+
+.contact-form ::placeholder {
+	color: #9aa3b5;
+}
+
+.contact-form input[type="submit"] {
+	height: 3rem;
+	margin-top: 0.6rem;
+	padding: 0 1.4rem 0 3rem;
+	border-style: none;
+	border-radius: 0.6rem;
+	background-color: #34498f;
+	background-image: url("../img/icon-send.svg");
+	background-position: 1.1rem center;
+	background-repeat: no-repeat;
+	background-size: 1.1rem;
+	color: var(--white);
+	font-family: var(--font-ui);
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.contact-form input[type="submit"]:hover {
+	background-color: #2b3d78;
+}
+
+/* ---------- Hamburger button (only on pages with the menu toggle) ---------- */
+.menu-toggle {
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
+
+.menu-button {
+	display: none;
+}
+
+/* ---------- Tablet: inner pages + hamburger menu ---------- */
+@media (max-width: 64em) {
+	header.site-header {
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	.menu-button {
+		display: block;
+		position: relative;
+		z-index: 20;
+		padding: 0.25rem 0.75rem;
+		color: var(--accent);
+		font-size: 2rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.menu-button::before {
+		content: "\2630";
+	}
+
+	.menu-toggle:focus-visible + .menu-button {
+		outline-color: var(--accent);
+		outline-style: solid;
+		outline-width: 0.125rem;
+	}
+
+	.menu-toggle:checked + .menu-button {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+	}
+
+	.menu-toggle:checked + .menu-button::before {
+		content: "\2715";
+	}
+
+	.menu-toggle ~ nav {
+		display: none;
+	}
+
+	.menu-toggle:checked ~ nav {
+		display: block;
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 10;
+		padding: 1.5rem 1rem;
+		overflow: auto;
+		background-color: var(--bg);
+	}
+
+	.menu-toggle:checked ~ nav::before {
+		content: "Menu";
+		display: block;
+		margin: 0.25rem 0 1.5rem 0.75rem;
+		color: #1b2a5c;
+		font-family: var(--font-ui);
+		font-size: 1rem;
+		font-weight: 700;
+	}
+
+	.menu-toggle ~ nav > ul {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5rem;
+	}
+
+	.menu-toggle ~ nav a {
+		padding: 1rem 0.75rem;
+		border-radius: 0.75rem;
+		color: #1b2a5c;
+		font-family: var(--font-ui);
+		font-size: 1.1rem;
+		font-weight: 400;
+	}
+
+	.menu-toggle ~ nav a.current {
+		background-color: var(--accent-soft);
+		font-weight: 700;
+	}
+
+	.menu-toggle ~ nav a.button {
+		min-width: 0;
+		margin: 0.5rem 0 0 0;
+		background-color: var(--dark);
+		color: var(--white);
+		font-weight: 400;
+		text-align: left;
+	}
+
+	.cards .card {
+		grid-column: span 6;
+		min-height: 0;
+	}
+
+	.museum {
+		min-height: 0;
+	}
+
+	.museums {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.intro h2,
+	.suggested h2,
+	.contact-intro h2 {
+		font-size: 1.5rem;
+	}
+
+	.route {
+		margin: 6rem 1.5rem 8rem 1.5rem;
+	}
+
+	.museums-intro {
+		padding-bottom: 4rem;
+	}
+
+	.contact-form {
+		padding-bottom: 8rem;
+	}
+
+	.footer-nav {
+		grid-column: 8 / 13;
+	}
+}
+
+/* ---------- Phone: inner pages ---------- */
+@media (max-width: 40em) {
+	.intro,
+	.intro:has(+ .areas),
+	.museums-intro,
+	.parks-intro,
+	.contact-intro {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.intro h2,
+	.suggested h2,
+	.contact-intro h2 {
+		font-size: 1.2rem;
+	}
+
+	.eyebrow {
+		font-size: 1.1rem;
+	}
+
+	.contact-intro .eyebrow {
+		font-size: 1.5rem;
+	}
+
+	.cards {
+		padding-top: 2rem;
+	}
+
+	.cards .card {
+		grid-column: 1 / -1;
+	}
+
+	.parks .card figcaption {
+		margin-top: 1.5rem;
+	}
+
+	.parks .card p.location {
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.areas,
+	.museums {
+		grid-template-columns: 1fr;
+	}
+
+	.areas {
+		padding-top: 2rem;
+	}
+
+	.suggested {
+		padding-top: 3rem;
+	}
+
+	.route-map {
+		margin-top: 2rem;
+	}
+
+	.route {
+		margin: 3rem 1.5rem 4rem 1.5rem;
+	}
+
+	.route h3 {
+		font-size: 1.5rem;
+	}
+
+	.route p {
+		font-size: 1.1rem;
+	}
+
+	.contact-form .row {
+		flex-direction: column;
+	}
+
+	.contact-form .field.narrow {
+		flex: 0 0 auto;
+	}
+
+	.contact-form {
+		padding-bottom: 4rem;
+	}
+
+	.contact-form legend {
+		font-size: 1.6rem;
+	}
+
+	.about,
+	.footer-nav {
+		grid-column: 1 / -1;
+	}
+
+	.footer-nav {
+		margin-top: 2rem;
+		text-align: left;
+	}
+
+	.footer-nav ul {
+		align-items: flex-start;
+	}
+}
